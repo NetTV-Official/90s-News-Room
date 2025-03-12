@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My 90s News</title>
+    <style>
+        body {
+            background: url('https://www.transparenttextures.com/patterns/old-mathematics.png');
+            font-family: Arial, sans-serif;
+            color: #000080;
+            text-align: center;
+        }
+        h1 {
+            font-family: "Comic Sans MS", cursive;
+            color: #FF4500;
+            text-shadow: 2px 2px yellow;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            border: 5px solid #008000;
+            padding: 10px;
+            background-color: #F0E68C;
+        }
+        .arcade, .quiz-section, .music-zone, .chat-zone, .win95-section {
+            background: #222;
+            color: #FFF;
+            padding: 10px;
+            margin-top: 20px;
+            border: 5px solid #FF0000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .easter-egg {
+            display: none;
+            color: red;
+            font-weight: bold;
+        }
+        .hidden-link {
+            text-decoration: none;
+            color: white;
+        }
+        .hidden-link:hover {
+            color: yellow;
+            text-decoration: underline;
+        }
+        .blink {
+            animation: blink 1s infinite alternate;
+        }
+        @keyframes blink {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        .button {
+            background: linear-gradient(to bottom, #FF0000, #990000);
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            border: 3px outset white;
+            cursor: pointer;
+        }
+        .button:hover {
+            background: #660000;
+        }
+        iframe {
+            width: 800px;
+            height: 400px;
+            border: 3px solid white;
+            margin-top: 10px;
+        }
+        .quiz-section iframe, .music-zone iframe, .arcade iframe, .win95-section iframe {
+            margin: 0 auto;
+            display: block;
+        }
+        .chat-zone input, .chat-zone button, .username-input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            width: 80%;
+        }
+        .chat-box {
+            width: 80%;
+            height: 300px;
+            margin: 10px;
+            padding: 10px;
+            background: #333;
+            border: 2px solid #FFF;
+            overflow-y: auto;
+            color: white;
+            font-size: 14px;
+            text-align: left;
+        }
+        .chat-zone button {
+            background: linear-gradient(to bottom, #FF0000, #990000);
+            color: white;
+            font-weight: bold;
+            border: 3px outset white;
+            cursor: pointer;
+        }
+        .chat-zone button:hover {
+            background: #660000;
+        }
+
+        /* Footer style */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #FF4500;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <marquee>🎉 Welcome to my 90s-style website! Explore and enjoy the surprises! 🎉</marquee>
+    <h1>About Me</h1>
+    <div class="container">
+        <p>Hello! I'm a lover of all things retro. Whether it's classic video games, old-school tech, or the golden age of the internet, I'm all in! 🚀</p>
+        
+        <h3>Favorite Things:</h3>
+        <ul>
+            <li>🎮 Video Games: PlayStation 1, SNES, Doom</li>
+            <li>💾 Tech: Windows 95, Floppy Disks, CRT Monitors</li>
+            <li>📀 Music: Nirvana, Spice Girls, Blink-182</li>
+            <li>📺 TV Shows: X-Files, Fresh Prince, Dragon Ball Z</li>
+        </ul>
+
+        <button class="button" onclick="revealSecret()">Click Me for a Surprise!</button>
+        
+        <p id="hidden-msg" class="easter-egg">You found an Easter egg! 🥚 Did you know that pressing <b>↑ ↑ ↓ ↓ ← → ← → B A</b> on some old games unlocked secrets? 😉</p>
+
+        <p>
+            Also, check out this <a href="#" onclick="rickRoll()" class="hidden-link">mysterious link</a> if you dare! 😏
+        </p>
+    </div>
+
+    <!-- Username Section -->
+    <div class="username-section">
+        <h2>🎮 Choose Your Username 🎮</h2>
+        <input type="text" id="username-input" class="username-input" placeholder="Enter a username...">
+        <button class="button" onclick="setUsername()">Set Username</button>
+        <p id="username-warning" style="color:red;"></p>
+    </div>
+
+    <div class="arcade">
+        <h2>🕹️ Arcade Center 🕹️</h2>
+        <p>Relive the golden age of gaming with a classic Mario experience!</p>
+        <iframe src="https://mukeshkmr776.github.io/super-mario/" id="arcade-iframe"></iframe>
+    </div>
+
+    <div class="quiz-section">
+        <h2>📝 Play a Quick Quiz! 📝</h2>
+        <p>Think you know your retro stuff? Enter a quiz link below and play it here!</p>
+        <button class="button" onclick="playQuiz()">Take the Quiz</button>
+        <br><br>
+        <iframe id="quiz-iframe" style="display:none;"></iframe>
+    </div>
+
+    <div class="music-zone">
+        <h2>🎶 Music Zone 🎶</h2>
+        <p>Listen to some classic 90s jams from my playlist below!</p>
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PL4BrNFx1j7E7UCPBiFDLNNppAmAemf9jN" 
+                width="800" height="400" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- Windows 95 Emulator Section -->
+    <div class="win95-section">
+        <h2>🖥️ Windows 95 Emulator 🖥️</h2>
+        <p>Experience the nostalgia of Windows 95 in your browser! Click below to interact with the emulator!</p>
+        <button class="button" onclick="launchWindows95()">Launch Windows 95</button>
+        <br><br>
+        <iframe id="win95-iframe" style="display:none;" src="https://www.pcjs.org/software/pcx86/sys/windows/win95/4.00.950/" width="800" height="400"></iframe>
+    </div>
+
+    <!-- Chat Zone -->
+    <div class="chat-zone">
+        <h2>💬 Chat Zone 💬</h2>
+        <p>Chat with others! Keep it clean and friendly, or the filter will block you! 😄</p>
+        <div class="chat-box" id="chat-box">
+            <!-- Messages will be displayed here -->
+        </div>
+        <input type="text" id="chat-input" placeholder="Enter your message..." disabled>
+        <button onclick="sendMessage()" disabled>Send</button>
+    </div>
+
+    <script>
+        // List of offensive words to filter for usernames and messages
+        const bannedWords = ['badword1', 'badword2', 'badword3', 'offensive']; // Replace with actual offensive words
+        let currentUsername = "";
+        
+        // Set username and validate
+        function setUsername() {
+            let username = document.getElementById("username-input").value.trim();
+            let warningMessage = document.getElementById("username-warning");
+            
+            // Check if username is empty
+            if (username === "") {
+                warningMessage.innerText = "Username cannot be empty!";
+                return;
+            }
+
+            // Check for banned words in the username
+            if (containsBannedWords(username)) {
+                warningMessage.innerText = "Your username contains inappropriate words!";
+                return;
+            }
+
+            // Set the username
+            currentUsername = username;
+            warningMessage.innerText = "";
+            alert("Username set to: " + username);
+
+            // Enable chat input and button
+            document.getElementById("chat-input").disabled = false;
+            document.querySelector("button").disabled = false;
+        }
+
+        // Check if a string contains banned words
+        function containsBannedWords(input) {
+            for (let word of bannedWords) {
+                let regex = new RegExp("\\b" + word + "\\b", "gi");
+                if (regex.test(input)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Send message and filter banned words
+        function sendMessage() {
+            let message = document.getElementById("chat-input").value;
+            message = message.trim();
+
+            if (message === "") {
+                alert("Please enter a message!");
+                return;
+            }
+
+            // Filter the message for banned words
+            let filteredMessage = filterMessage(message);
+
+            if (filteredMessage === "") {
+                alert("Your message contains inappropriate content and cannot be sent.");
+                return;
+            }
+
+            // Display the filtered message in the chat box with the username
+            let chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += "<p><strong>" + escapeHTML(currentUsername) + ":</strong> " + escapeHTML(filteredMessage) + "</p>";
+            document.getElementById("chat-input").value = ""; // Clear the input field
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto scroll to the bottom
+        }
+
+        // Filter out banned words from a message
+        function filterMessage(message) {
+            for (let word of bannedWords) {
+                let regex = new RegExp("\\b" + word + "\\b", "gi");
+                message = message.replace(regex, "[REDACTED]");
+            }
+            return message;
+        }
+
+        // Escape HTML to prevent XSS attacks
+        function escapeHTML(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        }
+
+        function revealSecret() {
+            document.getElementById('hidden-msg').style.display = 'block';
+        }
+
+        function rickRoll() {
+            alert("You've been Rickrolled! 😆");
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }
+
+        function playQuiz() {
+            let url = prompt("Enter the quiz link you want to play:");
+            if (url) {
+                let quizFrame = document.getElementById("quiz-iframe");
+                quizFrame.style.display = "block";
+                quizFrame.src = url;
+                quizFrame.width = "800";
+                quizFrame.height = "400";
+                quizFrame.style.border = "3px solid white";
+                alert("Your quiz is now ready to play! 🎉");
+            } else {
+                alert("No link entered. Try again!");
+            }
+        }
+
+        // Show the Windows 95 Emulator iframe
+        function launchWindows95() {
+            let win95Frame = document.getElementById("win95-iframe");
+            win95Frame.style.display = "block";
+            alert("Launching Windows 95 Emulator! 🎮");
+        }
+    </script>
+
+    <!-- Copyright Section -->
+    <footer>
+        <p>&copy; 2025 My 90s News. All rights reserved. Created with 💻 and nostalgia. 🚀</p>
+    </footer>
+</body>
+</html>
