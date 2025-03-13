@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My 90s News</title>
+    <style>
+        body {
+            background: url('https://www.transparenttextures.com/patterns/old-mathematics.png');
+            font-family: Arial, sans-serif;
+            color: #000080;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-family: "Comic Sans MS", cursive;
+            color: #FF4500;
+            text-shadow: 2px 2px yellow;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            border: 5px solid #008000;
+            padding: 10px;
+            background-color: #F0E68C;
+        }
+        .section {
+            background: #222;
+            color: #FFF;
+            padding: 10px;
+            margin-top: 20px;
+            border: 5px solid #FF0000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        iframe {
+            width: 800px;
+            height: 400px;
+            border: 3px solid white;
+            margin-top: 10px;
+        }
+        .button {
+            background: linear-gradient(to bottom, #FF0000, #990000);
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            border: 3px outset white;
+            cursor: pointer;
+        }
+        .button:hover {
+            background: #660000;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #FF4500;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <marquee>🎉 Welcome to My 90s News! Explore and enjoy the nostalgia! 🎉 - Created by Alfie Truelove - Please consider donating to 0x6322fc8e38429A7787eE50d35e0F68Aea1c763F7 (ETH) </marquee>
+
+    <h1>About Me</h1>
+    <div class="container">
+        <p>Hello! I'm a lover of all things retro. Whether it's classic video games, old-school tech, or the golden age of the internet, I'm all in! 🚀</p>
+        
+        <h3>Favorite Things:</h3>
+        <ul>
+            <li>🎮 Video Games: PlayStation 1, SNES, Doom</li>
+            <li>💾 Tech: Windows 95, Floppy Disks, CRT Monitors</li>
+            <li>📀 Music: Nirvana, Spice Girls, Blink-182</li>
+            <li>📺 TV Shows: X-Files, Fresh Prince, Dragon Ball Z</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🕹️ Arcade Center 🕹️</h2>
+        <iframe src="https://mukeshkmr776.github.io/super-mario/"></iframe>
+    </div>
+
+    <div class="section">
+        <h2>📝 Play a Quick Quiz! 📝</h2>
+        <button class="button" onclick="playQuiz()">Take the Quiz</button>
+        <iframe id="quiz-iframe" style="display:none;"></iframe>
+    </div>
+
+    <div class="section">
+        <h2>🎶 Music Zone 🎶</h2>
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PL6dBZAPz-7xC6UI762fU-kfY4BarzeAjP" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="section">
+        <h2>🖥️ Windows 95 Emulator 🖥️</h2>
+        <button class="button" onclick="launchWindows95()">Launch Windows 95</button>
+        <iframe id="win95-iframe" style="display:none;" src="https://www.pcjs.org/software/pcx86/sys/windows/win95/4.00.950/"></iframe>
+    </div>
+
+    <div class="section">
+        <h2>🕰️ Time Machine - Browse the Web Like It's the Past! 🕰️</h2>
+        <iframe src="https://theoldnet.com/" width="400" height="250" title="The Old Net - Time Machine"></iframe>
+        <p><small>📜 Powered by <a href="https://theoldnet.com/" target="_blank">TheOldNet.com</a></small></p>
+    </div>
+
+    <div class="section">
+        <h2>💾 Design Your Own 90s Website! 💾</h2>
+        <a href="web.html">Build your website without code</a>
+
+    </div>
+
+    <script>
+        function playQuiz() {
+            let url = prompt("Enter the quiz link you want to play:");
+            if (url) {
+                let quizFrame = document.getElementById("quiz-iframe");
+                quizFrame.style.display = "block";
+                quizFrame.src = url;
+            } else {
+                alert("No link entered. Try again!");
+            }
+        }
+
+        function launchWindows95() {
+            let win95Frame = document.getElementById("win95-iframe");
+            win95Frame.style.display = "block";
+            alert("Launching Windows 95 Emulator! 🎮");
+        }
+
+        function generateHTML() {
+            let template = document.getElementById("template").value;
+            let title = document.getElementById("title").value;
+            let content = document.getElementById("content").value;
+            let sticker = document.getElementById("stickers").value;
+            let stickerHTML = sticker === "none" ? "" : `<p>${sticker}</p>`;
+
+            let style = template === "geocities" ? "body { background: blue; color: yellow; font-family: Comic Sans MS; }" :
+                        template === "neon" ? "body { background: black; color: lime; font-family: Arial; }" :
+                        "body { background: white; color: black; font-family: Times New Roman; }";
+
+            return `<!DOCTYPE html><html><head><title>${title}</title><style>${style}</style></head><body><h1>${title}</h1><p>${content}</p>${stickerHTML}</body></html>`;
+        }
+
+        function updatePreview() {
+            let previewFrame = document.getElementById("preview-frame");
+            let previewDoc = previewFrame.contentWindow.document;
+            previewDoc.open();
+            previewDoc.write(generateHTML());
+            previewDoc.close();
+        }
+
+        function exportHTML() {
+            let blob = new Blob([generateHTML()], { type: "text/html" });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "my_90s_website.html";
+            link.click();
+        }
+
+        updatePreview();
+    </script>
+
+    <footer>
+        <p>&copy; 2025 My 90s News. Created with 💾 and nostalgia. 🚀</p>
+    </footer>
+</body>
+</html>
